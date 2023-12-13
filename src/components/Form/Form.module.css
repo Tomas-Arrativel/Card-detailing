@@ -65,4 +65,6 @@
 }
 .error {
   color: var(--red);
+  font-size: 15px;
+  display: block;
 }

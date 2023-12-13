@@ -27,6 +27,7 @@ const Form = () => {
           className={errors.cardHolder ? styles.errorInp : ''}
           {...register('cardHolder', {
             required: { value: true, message: 'A name is required' },
+            minLength: { value: 4, message: 'A name is required' },
           })}
           type='text'
           placeholder='e.g. Jane Appleseed'
@@ -66,28 +67,44 @@ const Form = () => {
           <label>Exp. date (MM/YY)</label>
           <div className={styles.monthNYear}>
             <input
+              className={errors.expDateM ? styles.errorInp : ''}
               type='text'
               placeholder='MM'
               maxLength={2}
-              {...register('expDateM', { required: true })}
+              {...register('expDateM', {
+                required: { value: true, message: "Can't be blank" },
+              })}
             />
             <input
+              className={errors.expDateY ? styles.errorInp : ''}
               type='text'
               placeholder='YY'
               maxLength={2}
-              {...register('expDateY', { required: true })}
+              {...register('expDateY', {
+                required: { value: true, message: "Can't be blank" },
+              })}
             />
+            {errors.expDateM || errors.expDateY ? (
+              <p className={styles.error}>{errors.expDateM?.message}</p>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <div className={styles.inputContainer}>
           <label>CVC</label>
           <input
-            {...register('cvc', { required: true })}
-            className={styles.cvcInp}
+            className={
+              errors.cvc ? `${styles.errorInp} ${styles.cvcInp}` : styles.cvcInp
+            }
+            {...register('cvc', {
+              required: { value: true, message: "Can't be blank" },
+            })}
             type='text'
             placeholder='e.g. 123'
             maxLength={3}
           />
+          {errors.cvc && <p className={styles.error}>{errors.cvc?.message}</p>}
         </div>
       </div>
       <input type='submit' value='Confirm' className={styles.btn} />
