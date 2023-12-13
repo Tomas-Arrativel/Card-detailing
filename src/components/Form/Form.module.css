@@ -53,9 +53,16 @@
   outline: none;
 }
 .inputContainer input:focus {
-  border-color: var(--dark-gray);
+  border-image: linear-gradient(45deg, #6448fe, #600594) 1;
 }
 
 .inputContainer input::placeholder {
   color: var(--dark-gray);
+}
+
+.errorInp {
+  border-color: var(--red) !important;
+}
+.error {
+  color: var(--red);
 }
