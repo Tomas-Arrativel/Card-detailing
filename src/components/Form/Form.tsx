@@ -9,17 +9,28 @@ const Form = () => {
       </div>
       <div className={styles.inputContainer}>
         <label>Card Number</label>
-        <input type='text' placeholder='e.g. 1234 5678 9012 0000' />
+        <input
+          type='text'
+          placeholder='e.g. 1234 5678 9012 0000'
+          maxLength={19}
+        />
       </div>
-      <div>
+      <div className={styles.expNCvc}>
         <div className={styles.inputContainer}>
           <label>Exp. date (MM/YY)</label>
-          <input type='text' placeholder='MM' />
-          <input type='text' placeholder='YY' />
+          <div className={styles.monthNYear}>
+            <input type='text' placeholder='MM' maxLength={2} />
+            <input type='text' placeholder='YY' maxLength={2} />
+          </div>
         </div>
         <div className={styles.inputContainer}>
           <label>CVC</label>
-          <input type='text' placeholder='e.g. 123' />
+          <input
+            className={styles.cvcInp}
+            type='text'
+            placeholder='e.g. 123'
+            maxLength={3}
+          />
         </div>
       </div>
       <input type='submit' value='Confirm' className={styles.btn} />

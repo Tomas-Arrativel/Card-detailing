@@ -1,3 +1,4 @@
 .formCont {
+  min-width: 500px;
   flex: 2;
 }
