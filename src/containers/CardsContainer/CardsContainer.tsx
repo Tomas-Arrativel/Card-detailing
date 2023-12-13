@@ -1,8 +1,9 @@
 import { Card } from '../../components/exports';
+import styles from './CardsContainer.module.css';
 
 const CardsContainer = () => {
   return (
-    <section>
+    <section className={styles.cardsCont}>
       <Card />
     </section>
   );

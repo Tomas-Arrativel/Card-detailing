@@ -1,8 +1,9 @@
 import { Form } from '../../components/exports';
+import styles from './FormContainer.module.css';
 
 const FormContainer = () => {
   return (
-    <section>
+    <section className={styles.formCont}>
       <Form />
     </section>
   );

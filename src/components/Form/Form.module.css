@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 1rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--black);
+}
+
+.inputContainer label {
+}
+
+.btn {
+  background-color: var(--black);
+  padding: 0.7rem;
+  color: var(--white);
+}
