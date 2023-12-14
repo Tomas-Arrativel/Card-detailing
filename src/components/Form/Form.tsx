@@ -9,13 +9,27 @@ type Inputs = {
   cvc: string;
 };
 
-const Form = () => {
+interface CardsProps {
+  cardNum: string;
+  name: string;
+  expM: string;
+  expY: string;
+  cvc: string;
+}
+
+const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+
+  name = watch('cardHolder');
+  cardNum = watch('cardNumber');
+  expM = watch('expDateM');
+  expY = watch('expDateY');
+  cvc = watch('cvc');
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
