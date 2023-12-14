@@ -69,10 +69,18 @@ const Form = () => {
             <input
               className={errors.expDateM ? styles.errorInp : ''}
               type='text'
+              min={1}
+              max={12}
               placeholder='MM'
               maxLength={2}
               {...register('expDateM', {
                 required: { value: true, message: "Can't be blank" },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: 'Wrong format, numbers only',
+                },
+                max: { value: 12, message: "This month doesn't exist" },
+                min: { value: 1, message: "This month doesn't exist" },
               })}
             />
             <input
@@ -82,14 +90,21 @@ const Form = () => {
               maxLength={2}
               {...register('expDateY', {
                 required: { value: true, message: "Can't be blank" },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: 'Wrong format, numbers only',
+                },
+                minLength: { value: 2, message: 'Please enter a valid Year' },
               })}
             />
-            {errors.expDateM || errors.expDateY ? (
-              <p className={styles.error}>{errors.expDateM?.message}</p>
-            ) : (
-              ''
-            )}
           </div>
+          {errors.expDateM || errors.expDateY ? (
+            <p className={styles.error}>
+              {errors.expDateM?.message || errors.expDateY?.message}
+            </p>
+          ) : (
+            ''
+          )}
         </div>
         <div className={styles.inputContainer}>
           <label>CVC</label>
@@ -99,6 +114,11 @@ const Form = () => {
             }
             {...register('cvc', {
               required: { value: true, message: "Can't be blank" },
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Wrong format, numbers only',
+              },
+              minLength: { value: 3, message: 'Please enter a valid CVC' },
             })}
             type='text'
             placeholder='e.g. 123'
