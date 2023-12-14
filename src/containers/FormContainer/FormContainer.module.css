@@ -1,4 +1,7 @@
 .formCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 500px;
   flex: 2;
 }
