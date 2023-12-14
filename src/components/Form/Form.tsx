@@ -25,13 +25,13 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   name = watch('cardHolder');
   cardNum = watch('cardNumber');
   expM = watch('expDateM');
   expY = watch('expDateY');
   cvc = watch('cvc');
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

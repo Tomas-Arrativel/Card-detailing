@@ -1,4 +1,3 @@
-import { Card } from '../../components/exports';
 import styles from './CardsContainer.module.css';
 
 interface CardsProps {
@@ -17,9 +16,7 @@ const CardsContainer = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
       <div className={styles.cards}>
         <div className={styles.frontCard}>
           <img src='./images/card-logo.svg' alt='' />
-          <p className={styles.cardNum}>
-            {cardNum == '' ? '0000 0000 0000 0000' : cardNum}
-          </p>
+          <p className={styles.cardNum}>{cardNum}</p>
           <p className={styles.name}>{name == '' ? 'Tomás Arrativel' : name}</p>
           <div className={styles.expDate}>
             <p>
