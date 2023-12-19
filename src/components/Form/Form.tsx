@@ -30,7 +30,7 @@ const Form = ({ creditCard, setCreditCard }: CardsProps) => {
   } = useForm<Inputs>();
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => setIsActive(true);
+  const onSubmit: SubmitHandler<Inputs> = () => setIsActive(true);
 
   const onFormChange = () => {
     let inputValue = watch('cardNumber');
