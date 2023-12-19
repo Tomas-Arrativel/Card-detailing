@@ -93,3 +93,15 @@
 .complete button {
   width: 100%;
 }
+
+@media (max-width: 550px) {
+  .form {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .complete {
+    width: 100vw;
+    padding: 1rem;
+  }
+}

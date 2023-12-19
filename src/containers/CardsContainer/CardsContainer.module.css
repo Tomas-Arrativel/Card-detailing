@@ -26,15 +26,15 @@
 .frontCard {
   background: url('/images/bg-card-front.png');
   position: absolute;
-  left: -330px;
-  top: -260px;
+  top: 235px;
+  left: 270px;
 }
 
 .backCard {
   background: url('/images/bg-card-back.png');
   position: absolute;
-  left: -250px;
-  top: 30px;
+  top: 515px;
+  left: 350px;
 }
 
 .frontCard img {
@@ -75,4 +75,85 @@
   color: var(--white);
   letter-spacing: 2px;
   font-size: 15px;
+}
+
+@media (max-width: 1550px) {
+  .cardsCont {
+    flex: 0;
+  }
+  .background {
+    width: 400px;
+  }
+
+  .frontCard {
+    left: 100px;
+  }
+
+  .backCard {
+    left: 180px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .background {
+    background: url('/images/bg-main-mobile.png') center no-repeat;
+    background-size: cover;
+    width: 100vw;
+    min-height: 30vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .frontCard,
+  .backCard {
+    background-position: center;
+    background-size: cover;
+    width: 360px;
+    height: 200px;
+  }
+  .frontCard {
+    z-index: 2;
+    top: 135px;
+    left: 300px;
+  }
+  .backCard {
+    top: 40px;
+    left: 410px;
+  }
+
+  .cvc {
+    bottom: 92px;
+    right: 40px;
+  }
+  .cardNum {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .frontCard {
+    left: 130px;
+  }
+  .backCard {
+    left: 240px;
+  }
+}
+
+@media (max-width: 620px) {
+  .frontCard {
+    left: 30px;
+  }
+  .backCard {
+    left: 110px;
+  }
+}
+
+@media (max-width: 470px) {
+  .frontCard {
+    left: 10px;
+  }
+  .backCard {
+    top: 20px;
+    left: 50px;
+  }
 }

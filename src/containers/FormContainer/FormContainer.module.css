@@ -6,3 +6,38 @@
   flex: 2;
   padding-right: 15rem;
 }
+
+@media (max-width: 1350px) {
+  .formCont {
+    padding-right: 7rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  .formCont {
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 1080px) {
+  .formCont {
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .formCont {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .formCont {
+    flex: 0;
+    margin-top: 5rem;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+  }
+}
