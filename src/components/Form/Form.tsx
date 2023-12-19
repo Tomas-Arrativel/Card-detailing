@@ -10,14 +10,10 @@ type Inputs = {
 };
 
 interface CardsProps {
-  cardNum: string;
-  name: string;
-  expM: string;
-  expY: string;
-  cvc: string;
+  setCreditCard: any;
 }
 
-const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
+const Form = ({ setCreditCard }: CardsProps) => {
   const {
     register,
     handleSubmit,
@@ -27,16 +23,19 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  name = watch('cardHolder');
-  cardNum = watch('cardNumber');
-  expM = watch('expDateM');
-  expY = watch('expDateY');
-  cvc = watch('cvc');
+  setCreditCard({
+    name: watch('cardHolder'),
+    cardNumber: watch('cardNumber'),
+    expM: watch('expDateM'),
+    expY: watch('expDateY'),
+    cvc: watch('cvc'),
+  });
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.inputContainer}>
         <label>Cardholder Name</label>
+
         <input
           className={errors.cardHolder ? styles.errorInp : ''}
           {...register('cardHolder', {
@@ -46,12 +45,14 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
           type='text'
           placeholder='e.g. Jane Appleseed'
         />
+
         {errors.cardHolder && (
           <p className={styles.error}>{errors.cardHolder.message}</p>
         )}
       </div>
       <div className={styles.inputContainer}>
         <label>Card Number</label>
+
         <input
           className={errors.cardNumber ? styles.errorInp : ''}
           {...register('cardNumber', {
@@ -72,6 +73,7 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
           type='text'
           placeholder='e.g. 1234 5678 9012 0000'
         />
+
         {errors.cardNumber && (
           <p className={styles.error}>{errors.cardNumber?.message}</p>
         )}
@@ -97,6 +99,7 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
                 min: { value: 1, message: "This month doesn't exist" },
               })}
             />
+
             <input
               className={errors.expDateY ? styles.errorInp : ''}
               type='text'
@@ -108,7 +111,10 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
                   value: /^[0-9]+$/,
                   message: 'Wrong format, numbers only',
                 },
-                minLength: { value: 2, message: 'Please enter a valid Year' },
+                minLength: {
+                  value: 2,
+                  message: 'Please enter a valid Year',
+                },
               })}
             />
           </div>
@@ -122,6 +128,7 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
         </div>
         <div className={styles.inputContainer}>
           <label>CVC</label>
+
           <input
             className={
               errors.cvc ? `${styles.errorInp} ${styles.cvcInp}` : styles.cvcInp
@@ -138,6 +145,7 @@ const Form = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
             placeholder='e.g. 123'
             maxLength={3}
           />
+
           {errors.cvc && <p className={styles.error}>{errors.cvc?.message}</p>}
         </div>
       </div>
