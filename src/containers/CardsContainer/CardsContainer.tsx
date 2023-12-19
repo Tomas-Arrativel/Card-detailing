@@ -1,14 +1,16 @@
 import styles from './CardsContainer.module.css';
 
 interface CardsProps {
-  cardNum: string;
-  name: string;
-  expM: string;
-  expY: string;
-  cvc: string;
+  creditCard: {
+    name: string;
+    cardNumber: string;
+    expM: string;
+    expY: string;
+    cvc: string;
+  };
 }
 
-const CardsContainer = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
+const CardsContainer = ({ creditCard }: CardsProps) => {
   return (
     <section className={styles.cardsCont}>
       <div className={styles.background}></div>
@@ -16,17 +18,25 @@ const CardsContainer = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
       <div className={styles.cards}>
         <div className={styles.frontCard}>
           <img src='./images/card-logo.svg' alt='' />
-          <p className={styles.cardNum}>{cardNum}</p>
-          <p className={styles.name}>{name == '' ? 'Tomás Arrativel' : name}</p>
+          <p className={styles.cardNum}>
+            {creditCard.cardNumber == ''
+              ? '0000 0000 0000 0000'
+              : creditCard.cardNumber}
+          </p>
+          <p className={styles.name}>
+            {creditCard.name == '' ? 'Jane Appleseed' : creditCard.name}
+          </p>
           <div className={styles.expDate}>
             <p>
-              <span>{expM == '' ? '00' : expM}</span> /{' '}
-              <span>{expY == '' ? '00' : expY}</span>
+              <span>{creditCard.expM == '' ? '00' : creditCard.expM}</span> /{' '}
+              <span>{creditCard.expY == '' ? '00' : creditCard.expY}</span>
             </p>
           </div>
         </div>
         <div className={styles.backCard}>
-          <p className={styles.cvc}>{cvc == '' ? '000' : cvc}</p>
+          <p className={styles.cvc}>
+            {creditCard.cvc == '' ? '000' : creditCard.cvc}
+          </p>
         </div>
       </div>
     </section>

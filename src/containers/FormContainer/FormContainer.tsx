@@ -2,17 +2,20 @@ import { Form } from '../../components/exports';
 import styles from './FormContainer.module.css';
 
 interface CardsProps {
-  cardNum: string;
-  name: string;
-  expM: string;
-  expY: string;
-  cvc: string;
+  creditCard: {
+    name: string;
+    cardNumber: string;
+    expM: string;
+    expY: string;
+    cvc: string;
+  };
+  setCreditCard: any;
 }
 
-const FormContainer = ({ cardNum, name, expM, expY, cvc }: CardsProps) => {
+const FormContainer = ({ setCreditCard }: CardsProps) => {
   return (
     <section className={styles.formCont}>
-      <Form cardNum={cardNum} name={name} expM={expM} expY={expY} cvc={cvc} />
+      <Form setCreditCard={setCreditCard} />
     </section>
   );
 };
