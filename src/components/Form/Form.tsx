@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './Form.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -10,10 +11,17 @@ type Inputs = {
 };
 
 interface CardsProps {
+  creditCard: {
+    name: string;
+    cardNumber: string;
+    expM: string;
+    expY: string;
+    cvc: string;
+  };
   setCreditCard: any;
 }
 
-const Form = ({ setCreditCard }: CardsProps) => {
+const Form = ({ creditCard, setCreditCard }: CardsProps) => {
   const {
     register,
     handleSubmit,
@@ -23,16 +31,26 @@ const Form = ({ setCreditCard }: CardsProps) => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  setCreditCard({
-    name: watch('cardHolder'),
-    cardNumber: watch('cardNumber'),
-    expM: watch('expDateM'),
-    expY: watch('expDateY'),
-    cvc: watch('cvc'),
-  });
+  const onFormChange = () => {
+    let inputValue = watch('cardNumber');
+    inputValue = inputValue.replace(/\s/g, '');
+    inputValue = inputValue.replace(/(.{4})/g, '$1 ');
+
+    setCreditCard({
+      name: watch('cardHolder'),
+      cardNumber: inputValue,
+      expM: watch('expDateM'),
+      expY: watch('expDateY'),
+      cvc: watch('cvc'),
+    });
+  };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit)}
+      onChange={onFormChange}
+    >
       <div className={styles.inputContainer}>
         <label>Cardholder Name</label>
 
@@ -44,6 +62,7 @@ const Form = ({ setCreditCard }: CardsProps) => {
           })}
           type='text'
           placeholder='e.g. Jane Appleseed'
+          maxLength={25}
         />
 
         {errors.cardHolder && (
@@ -55,23 +74,25 @@ const Form = ({ setCreditCard }: CardsProps) => {
 
         <input
           className={errors.cardNumber ? styles.errorInp : ''}
+          value={creditCard.cardNumber}
           {...register('cardNumber', {
             required: { value: true, message: 'A card number is required' },
             minLength: {
-              value: 16,
+              value: 20,
               message: 'Please enter a valid card number',
             },
             maxLength: {
-              value: 16,
+              value: 20,
               message: 'Please enter a valid card number',
             },
             pattern: {
-              value: /^[0-9]+$/,
+              value: /^[0-9\s]+$/,
               message: 'Wrong format, numbers only',
             },
           })}
           type='text'
           placeholder='e.g. 1234 5678 9012 0000'
+          maxLength={20}
         />
 
         {errors.cardNumber && (
