@@ -12,10 +12,10 @@ interface CardsProps {
   setCreditCard: any;
 }
 
-const FormContainer = ({ setCreditCard }: CardsProps) => {
+const FormContainer = ({ creditCard, setCreditCard }: CardsProps) => {
   return (
     <section className={styles.formCont}>
-      <Form setCreditCard={setCreditCard} />
+      <Form creditCard={creditCard} setCreditCard={setCreditCard} />
     </section>
   );
 };
